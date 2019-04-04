@@ -18,7 +18,7 @@ class PostsController extends Controller
         //use Eloquent ORM to fetch data rather than using plain sql
 
         // adding pagination
-        $posts = Post::orderBy('created_at', 'asc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         // $posts = Post::orderBy('title', 'desc')->take(1)->get(); // limit the number of posts
         // $post = Post::where('title', 'Title of the first post');  
         // this is to order post by a specific field 
@@ -80,7 +80,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -92,7 +93,11 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+        return redirect('/posts/'. $post->id)->with('post', $post);
     }
 
     /**
