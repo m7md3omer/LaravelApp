@@ -11,8 +11,13 @@
     <body>
       @include('inc.navbar')
       <div class="container" style="margin-top: 1em;">
+        @include('inc.messages')
         @yield('content')
       </div>
+      <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+      <script>
+          CKEDITOR.replace( 'article-ckeditor' );
+      </script>
        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

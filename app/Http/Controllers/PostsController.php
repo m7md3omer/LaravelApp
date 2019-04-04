@@ -18,7 +18,7 @@ class PostsController extends Controller
         //use Eloquent ORM to fetch data rather than using plain sql
 
         // adding pagination
-        $posts = Post::orderBy('title', 'asc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'asc')->paginate(10);
         // $posts = Post::orderBy('title', 'desc')->take(1)->get(); // limit the number of posts
         // $post = Post::where('title', 'Title of the first post');  
         // this is to order post by a specific field 
@@ -48,7 +48,16 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+        // create and save the post
+        $post = new Post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+        return redirect('/posts')->with('success', 'Post created');
     }
 
     /**
