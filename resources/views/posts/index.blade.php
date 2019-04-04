@@ -9,10 +9,8 @@
                 <p>{{$post->body}}</p>
             </div>
             @endforeach
-            <div class="jumbotron">
-                {{ $posts->onEachSide(3)->links() }}
-            </div>
+            {{ $posts->onEachSide(3)->links() }}
     @else
         <h2>No posts found</h2>
-    @endif   
+    @endif
 @endsection
