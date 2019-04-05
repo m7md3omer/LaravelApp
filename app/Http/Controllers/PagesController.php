@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class PagesController extends Controller
 
@@ -29,4 +30,5 @@ class PagesController extends Controller
         );
         return view('pages.services')->with($data);
     }
+    
 }
