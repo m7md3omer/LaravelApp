@@ -14,3 +14,6 @@ Route::get('/services', 'PagesController@services');
 
 // to include all methods and maping them to their respective
 Route::resource('posts', 'PostsController');
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index');
