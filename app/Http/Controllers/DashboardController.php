@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        // $user->posts gives us all posts by the specific user because we defined the relationshiop
+        // between the two models
+        return view('dashboard')->with('posts', $user->posts);
     }
 }

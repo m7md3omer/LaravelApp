@@ -5,7 +5,7 @@
         @foreach ($posts as $post)
             <div class="card card-body bg-light">
                 <h3><a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h3>
-                <small>written on {{ $post->created_at }}</small>
+                <small>written on {{ $post->created_at }} by {{$post->user->name}}</small>
                 <p>{!!$post->body!!}</p>
             </div>
             @endforeach

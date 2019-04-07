@@ -12,4 +12,9 @@ class Post extends Model
     public $primaryKey = 'id'; 
     // (default true) to create created_at and updated_at columns in the database
     public $timestamps = true;
+
+    // every post belongs to a user
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }
