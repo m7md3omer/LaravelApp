@@ -152,11 +152,7 @@ class PostsController extends Controller
             $post->cover_image = $fileNameToStore;
         }
         $post->save();
-        $data = array(
-            'post' => $post,
-            'success' => 'Post Updated',
-        );
-        return redirect('/posts/'. $post->id)->with('data', $data);
+        return redirect('/posts/'. $post->id)->with('post', $post)->with('success', 'post updated successfully');
     }
 
     /**
