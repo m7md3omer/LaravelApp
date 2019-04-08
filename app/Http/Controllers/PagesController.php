@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 
 class PagesController extends Controller
@@ -11,9 +12,13 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $title = 'Welcome to laravel';
-        // return view('pages.index', compact('title'));  can be done like this
-        return view('pages.index')->with('title', $title); // the other way
+        if(!Auth::check()){
+            $title = 'Welcome to laravel';
+            // return view('pages.index', compact('title'));  can be done like this
+            return view('pages.index')->with('title', $title); // the other way
+        }
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        return redirect('/posts/')->with('posts', $posts);
     }
 
     public function about()
