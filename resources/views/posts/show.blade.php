@@ -8,7 +8,7 @@
     <hr>
     <small>written on {{ $post->created_at }} by {{$post->user->name}}</small>
     <hr>
-    @if (Auth()->user()->id == $post->user_id)
+    @if (Auth::check() && Auth()->user()->id == $post->user_id)
         <a href="/posts/{{ $post->id }}/edit" class="btn btn-info">Edit</a>
         {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'style' => 'float:right;']) !!}
             {{ Form::hidden('_method', 'DELETE') }}
